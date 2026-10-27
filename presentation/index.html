@@ -197,6 +197,7 @@ h2 em{color:var(--a)}
  .close .row{gap:6vh}
 }
 @media(prefers-reduced-motion:reduce){.rvl{opacity:1;transform:none}.cue i{animation:none}}
+video::-webkit-media-controls,video::-webkit-media-controls-start-playback-button,video::-webkit-media-controls-overlay-play-button{display:none!important;-webkit-appearance:none!important}
 </style>
 </head>
 <body>
@@ -931,6 +932,12 @@ addEventListener('keydown',e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)
 document.fonts&&document.fonts.ready.then(()=>{measure();kick()});
 measure();render();measure();kick();
 addEventListener('load',()=>{measure();kick()});
+
+/* keep every video playing (Safari may block autoplay until the first gesture) */
+(function(){const go=()=>document.querySelectorAll('video').forEach(v=>{v.muted=true;v.defaultMuted=true;v.setAttribute('playsinline','');if(v.paused){const r=v.play();if(r&&r.catch)r.catch(()=>{})}});
+ go();addEventListener('load',go);document.addEventListener('visibilitychange',go);
+ ['pointerdown','touchstart','keydown','wheel','scroll','click'].forEach(e=>addEventListener(e,go,{passive:true}));
+ setInterval(go,1500)})();
 </script>
 </body>
 </html>
