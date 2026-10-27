@@ -264,6 +264,12 @@ h2 em{color:var(--a)}
  </div>
 </section>
 
+<!-- 7 CRM -->
+<section class="crm light" id="s7" data-t="0" style="min-height:100svh;display:flex;align-items:center">
+ <div class="in"><div class="kick rvl" data-k="wK"></div><h2 class="rvl" data-k="wTitle"></h2><p class="lead rvl" data-k="wTxt"></p>
+  <div class="cols"><div class="col rvl"><span class="no">01</span><h3 data-k="w1t"></h3><p data-k="w1"></p></div><div class="col rvl"><span class="no">02</span><h3 data-k="w2t"></h3><p data-k="w2"></p></div><div class="col rvl"><span class="no">03</span><h3 data-k="w3t"></h3><p data-k="w3"></p></div></div></div>
+</section>
+
 <!-- 4 STORY -->
 <section class="scene story light" id="s4" style="--h:520" data-t="0.1,0.3,0.5,0.7,0.9">
  <div class="pin">
@@ -301,12 +307,6 @@ h2 em{color:var(--a)}
   <div><div class="kick" data-k="dK"></div><h2 data-k="dTitle"></h2><p class="lead" data-k="dCap"></p><a class="btn" id="dOpen" data-k="dOpen" target="_blank" rel="noopener" hidden></a></div>
   <div class="phone" id="dph"><div class="scr"><iframe id="df" title="Demo"></iframe></div></div>
  </div></div>
-</section>
-
-<!-- 7 CRM -->
-<section class="crm light" id="s7" data-t="0" style="min-height:100svh;display:flex;align-items:center">
- <div class="in"><div class="kick rvl" data-k="wK"></div><h2 class="rvl" data-k="wTitle"></h2><p class="lead rvl" data-k="wTxt"></p>
-  <div class="cols"><div class="col rvl"><span class="no">01</span><h3 data-k="w1t"></h3><p data-k="w1"></p></div><div class="col rvl"><span class="no">02</span><h3 data-k="w2t"></h3><p data-k="w2"></p></div><div class="col rvl"><span class="no">03</span><h3 data-k="w3t"></h3><p data-k="w3"></p></div></div></div>
 </section>
 
 <!-- 8 RESULTS -->
@@ -839,13 +839,13 @@ nxK:"Le chemin",nxTitle:"Comment on commence",nx1t:"Une première conversation",
 qA:"Commençons par une",qB:"conversation.",qSub:"Rien ne passe entre les mailles. Scannez le code ou venez me voir ce soir.",qrNone:"Ajoutez votre courriel ou un lien pour afficher le code QR.",subj:"Démo CRM"}};
 const NOTES=[
 ['Open in French, then English. One line: I help small businesses stop losing customers to forgotten follow-ups. Do not apologize for anything.'],
-['Start with the numbers. 98.3 percent of PEI employers are small. Each owner carries 735 hours of paperwork a year. Ask who feels that.'],
+['Start with the numbers. 98.3 percent of PEI employers are small. Each owner carries 250 hours of paperwork a year. Ask who feels that.'],
 ['7x and 60x: speed of the first reply. Say it plainly: the first reply decides. Pause two seconds.'],
 ['The line everything hangs on. Say it slowly. Let the words arrive.'],
+['Name it once: a CRM is a simple memory. Who, what you promised, what is next.'],
 ['Scroll slowly. Show, do not explain: the enquiry arrives, the details are filed, the reply, the meeting prep, the week.'],
 ['Let the video play without talking for a few seconds. Then: one enquiry, start to finish.'],
 ['Live demo. Tap refresh, open Nadia, tick products, send. Say: sample data, sending is simulated.'],
-['Name it once: a CRM is a simple memory. Who, what you promised, what is next.'],
 ['Three results, each specific. Keep it human.'],
 ['Customizable. Give one local example from the room.'],
 ['Room to grow. Promise nothing that is not in a written quote.'],
@@ -903,7 +903,7 @@ function tick(force){const y=scrollY;let moving=force||false;
   if(near||force){s.el.style.setProperty('--p',s.sp.toFixed(4));const f=upd[s.el.id];if(f)f(s)}});
  const h=document.documentElement;$('#bar').style.width=(y/(h.scrollHeight-h.clientHeight||1)*100)+'%';
  let ci=0;S.forEach((s,i)=>{if(y+innerHeight*.5>=s.top)ci=i});if(ci!==tick.ci){tick.ci=ci;$$('#dots button').forEach((d,k)=>d.classList.toggle('on',k===ci));$('#cnt').textContent=String(ci+1).padStart(2,'0')+' / '+String(S.length).padStart(2,'0');if(!$('#notes').hidden)updNotes()}
- if(S[6]&&y+innerHeight*2>S[6].top)mountDemo();
+ const dm=S.find(x=>x.el.id==='s6');if(dm&&y+innerHeight*2>dm.top)mountDemo();
  if(moving)requestAnimationFrame(()=>tick());else ticking=false}
 function kick(){if(!ticking){ticking=true;requestAnimationFrame(()=>tick())}}
 addEventListener('scroll',kick,{passive:true});addEventListener('resize',()=>{measure();kick()});
